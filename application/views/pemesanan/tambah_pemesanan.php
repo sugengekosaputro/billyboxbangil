@@ -252,7 +252,7 @@ $(function(){
           let id_order = res.id_order;
           $.ajax({
             type: "post",
-            url: "http://localhost/billyboxbangil/pemesanan/notifEmailPemesanan",
+            url: "http://localhost/billyboxbangil/pemesanan/notifEmailPemesanan/1",
             data: {id_order : id_order},
             dataType: "json",
             success: function (response) {

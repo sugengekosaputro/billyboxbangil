@@ -75,14 +75,43 @@
                         </tbody>
                       </table>
                     </div>
+
                     <div class="row">
                       <div class="col-md-6 col-xs-12">
                         <p><h4>Status Order : <b><?php echo $order['status_order'] ?></b></h4></p>
-                        <button type="button" class="btn btn-sm btn-default"><span class="fa fa-refresh">&nbsp</span>Ubah </button>
+                        <form class="form-horizontal form-label-left input_mask" action="<?php echo site_url('pemesanan/update_status_order/'.$this->uri->segment(3) )?>" method="POST"> 
+                          <p>
+                            <div class="radio">
+                              <label>
+                                <input type="radio" name="status_order" id="orderBaru" value="Baru">
+                                Baru
+                              </label>
+                            </div>
+                            <div class="radio">
+                              <label>
+                                <input type="radio" name="status_order" id="orderProses" value="Diproses">
+                                Diproses KSI
+                              </label>
+                            </div>
+                            <div class="radio">
+                              <label>
+                                <input type="radio" name="status_order" id="orderDikirim" value="Dikirim">
+                                Dikirim
+                              </label>
+                            </div>
+                            <div class="radio">
+                              <label>
+                                <input type="radio" name="status_order" id="orderSelesai" value="Selesai">
+                                Selesai
+                              </label>
+                            </div>
+                          </p>
+                          <button type="submit" class="btn btn-sm btn-success"><span class="fa fa-refresh">&nbsp</span>Ubah Status </button>
+                        </form>
                       </div>
                       <div class="col-md-6 col-xs-12">
-                        <p><h4>Total Sudah Dibayar : <b>Rp.<?php echo $pembayaran['sudah_dibayar'] ?></b></h4></p>
                         <p><h4>Status Pembayaran : <b><?php echo $pembayaran['status_pembayaran'] ?></b></h4></p>
+                        <p><h4>Total Sudah Dibayar : <b>Rp.<?php echo $pembayaran['sudah_dibayar'] ?></b></h4></p>
                         <button type="button" class="btn btn-sm btn-success input-pembayaran"><span class="fa fa-dollar">&nbsp</span>Input Pembayaran </button>
                       </div>
                     </div>
@@ -96,7 +125,10 @@
                     </div>
 
                     <?php if($surat_jalan['history'] == false){ ?>
-                      <h4>Barang Belum Ada Laporan Pengiriman</h4>
+                      <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>Barang Belum Ada Laporan Pengiriman</strong>
+                      </div>
                     <?php } else { ?>
                     <?php foreach($surat_jalan['history'] as $key => $val){ ?>
                     <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
@@ -196,7 +228,7 @@
                     </div>
                     
                     <div class="ln_solid"></div>
-                    <button type="button" class="btn btn-sm btn-danger"><span class="fa fa-bell">&nbsp</span>Kirim Notifikasi Email </button>
+                    <button type="button" class="btn btn-sm btn-warning tampil-notif"><span class="fa fa-bell">&nbsp</span>Kirim Notifikasi Email </button>
                     <button type="button" class="btn btn-sm btn-success input-pembayaran"><span class="fa fa-dollar">&nbsp</span>Input Pembayaran </button>
 
                     <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
@@ -239,60 +271,6 @@
   </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Input Pembayaran</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-      </div>
-      <form class="form-horizontal form-label-left input_mask" method="POST">
-        <div class="modal-body">
-          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-              <!--hide-->
-              <input name ="id_pembayaran" value="<?php ?>" hidden>
-              <input type="number" name="dibayar" class="form-control has-feedback-left" id="" placeholder="total bayar">
-              <span class="fa fa-dollar form-control-feedback left" aria-hidden="true"></span>
-          </div>
-          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-           <label class="col-md-6 col-sm-6 col-xs-12 control-label">Ubah Status Order</label>
-           <div class="col-md-6 col-sm-6 col-xs-12">
-              <div class="radio">
-                  <label>
-                    <input type="radio" class="flat" value="Baru" name="status_order" checked> 
-                    Baru
-                  </label>
-                </div>
-                <div class="radio">  
-                  <label>
-                    <input type="radio" class="flat" value="Diproses" name="status_order"> 
-                    Diproses
-                  </label>
-                </div>
-                <div class="radio">  
-                  <label>
-                    <input type="radio" class="flat" value="selesai" name="status_order"> 
-                    Selesai
-                  </label>
-                </div>
-              </div>
-          </div>
-          <div class="form-group">
-
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
-          <input type="button" class="btn btn-sm btn-success" id="" value="Simpan"/>     
-        </div>
-      </form>  
-    </div>
-  </div>
-</div>
-
 <div class="modal fade" id="modal-pembayaran" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -322,12 +300,34 @@
   </div>
 </div>
 
+<div class="modal fade" id="modal-notif" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Konfirmasi</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <div class="modal-body">
+        <p>Kirim Notifikasi Sekarang ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-default" id="close-notif">Close</button>
+        <input type="button" class="btn btn-sm btn-success" id="kirim-notif" value="Kirim"/>     
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(function(){
+  var id_order = "<?php echo $this->uri->segment(3) ?>";
+  tampilkanStatusOrder(id_order);
+
   $('.input-pembayaran').on('click', function () {
     $('#modal-pembayaran').modal('show');
-    
     $('#simpan-pembayaran').on('click', function () {
       let id = $('#id_pembayaran').val();
       let dibayar = $('#dibayar').val();
@@ -337,6 +337,7 @@ $(function(){
         data: {
           id_pembayaran : id,
           value : dibayar,
+          id_order : id_order,
         },
         dataType: "json",
         success: function (res) {
@@ -345,6 +346,7 @@ $(function(){
             alert(res.message);
             location.reload();
           }
+//          console.log(res);
         },
         error: function (err) { 
           console.log(err);
@@ -356,5 +358,44 @@ $(function(){
       $('#dibayar').val('');
     });
   });
+
+  $('.tampil-notif').on('click', function () {
+    $('#modal-notif').modal('show');
+    $('#kirim-notif').on('click', function () {
+      $.ajax({
+        type: "post",
+        data: {id_order : id_order},
+        url: "http://localhost/billyboxbangil/pemesanan/notifEmailPemesanan/2",
+        dataType: "json",
+        success: function (response) {
+        }
+      });
+      $('#modal-notif').modal('hide');
+//console.log('kirim');
+    });
+  });
+
+  function tampilkanStatusOrder(id_order) {
+    $.ajax({
+      type: "get",
+      url: "http://localhost/billyboxbangilapi/pemesanan/"+id_order,
+      dataType: "json",
+      success: function (res) {
+        let status = res.order.status_order;
+        if(status == "Baru"){
+          $('input:radio[name=status_order][value=Baru]').prop('checked','checked');
+        }else if(status == "Diproses"){
+          $('input:radio[name=status_order][value=Diproses]').prop('checked','checked');
+        }else if(status == "Dikirim"){
+          $('input:radio[name=status_order][value=Dikirim]').prop('checked','checked');
+        }else if(status == "Selesai"){
+          $('input:radio[name=status_order][value=Selesai]').prop('checked','checked');
+        }
+      },
+      error: function (err) { 
+        console.log(err);
+      }
+    });
+  };
 })
 </script>

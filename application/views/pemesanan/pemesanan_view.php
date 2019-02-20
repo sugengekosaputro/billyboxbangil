@@ -25,7 +25,14 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach($data['pemesanan'] as $psn ){ ?>
+                  <?php if($data == null){ ?>
+                    <div class="alert alert-danger">
+                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                      <strong>Belum Ada Pemesanan</strong>
+                    </div>
+                  <?php } else { 
+                    foreach($data['pemesanan'] as $psn ){ 
+                  ?>
                   <tr>
                       <td><?php echo $psn['id_order'] ?></td>
                       <td>
@@ -41,6 +48,7 @@
                         <a href="<?php echo site_url('pemesanan/detail/'.$psn['id_order']) ?>" class="btn btn-sm btn-success"><span class="fa fa-shopping-cart">&nbsp</span> Detail</a>
                       </td>
                   </tr>
+                    <?php } ?>
                   <?php } ?>
                 </tbody>
               </table>
