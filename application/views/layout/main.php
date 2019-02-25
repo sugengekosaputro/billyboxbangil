@@ -17,10 +17,6 @@
     <link href="<?php echo base_url() ?>assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
     <link href="<?php echo base_url() ?>assets/vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- bootstrap-daterangepicker -->
-    <link href="<?php echo base_url() ?>assets/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-    <!-- bootstrap-datetimepicker -->
-    <link href="<?php echo base_url() ?>assets/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
     <!-- iCheck -->
     <link href="<?php echo base_url() ?>assets/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
     <!-- bootstrap-wysiwyg -->
@@ -67,11 +63,11 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="<?php echo base_url() ?>assets/images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="<?php echo $this->session->userdata('foto') ?>" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
-                <span>Welcome,</span>
-                <h2>John Doe</h2>
+                <span>Selamat Datang,</span>
+                <h2><?php echo $this->session->userdata('username') ?></h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -99,7 +95,7 @@
               <ul class="nav navbar-nav navbar-right" style="background-color : #f9a825">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" style="background-color : #f9a825" data-toggle="dropdown" aria-expanded="false">
-                    <img src="<?php echo base_url() ?>assets/images/img.jpg" alt="">John Doe
+                    <img src="<?php echo $this->session->userdata('foto') ?>" alt=""><?php echo $this->session->userdata('username') ?>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -111,7 +107,7 @@
                       </a>
                     </li>
                     <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="<?php echo base_url('login/logout')?>"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
 
@@ -208,11 +204,6 @@
     <script src="<?php echo base_url() ?>assets/vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
     <script src="<?php echo base_url() ?>assets/vendors/nprogress/nprogress.js"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="<?php echo base_url() ?>assets/vendors/moment/min/moment.min.js"></script>
-    <script src="<?php echo base_url() ?>assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <!-- bootstrap-datetimepicker -->    
-    <script src="<?php echo base_url() ?>assets/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
     <!-- iCheck -->
     <script src="<?php echo base_url() ?>assets/vendors/iCheck/icheck.min.js"></script>
     <!-- bootstrap-daterangepicker -->

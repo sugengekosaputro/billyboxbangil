@@ -11,6 +11,14 @@ class Barang extends CI_Controller {
 		'api' => 'http://localhost/billyboxbangilapi/'
 	);
 
+	public function __construct()
+	{
+		parent::__construct();
+		if(empty($this->session->userdata('username'))){
+			redirect(base_url('login'));
+		}
+	}
+
   public function index()
   {
 		$this->data['data'] = json_decode($this->guzzle_get($this->data['api'],'barang'),true);

@@ -7,6 +7,14 @@ class Tagihan extends CI_Controller {
 		'api' => 'http://localhost/billyboxbangilapi/'
 	);
 
+	public function __construct()
+	{
+		parent::__construct();
+		if(empty($this->session->userdata('username'))){
+			redirect(base_url('login'));
+		}
+	}
+
   public function simpan_sj()
 	{
 		$id_order = $this->input->post('id_order');
