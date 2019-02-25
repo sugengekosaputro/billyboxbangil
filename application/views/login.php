@@ -52,7 +52,11 @@
 						<input class="input100" type="password" name="password">
 						<span class="focus-input100" data-placeholder="Password"></span>
 					</div>
-
+					<div class="checkbox">
+						<label>
+							<input name="remember" type="checkbox" value="remember"> <a style="color:orange">tetap masuk
+						</label>
+                    </div>
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
