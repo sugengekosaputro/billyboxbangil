@@ -35,6 +35,7 @@
 				<form class="login100-form validate-form"  enctype="multipart/form-data" action="<?php echo site_url('Login/login')?>" method="POST">
 					<span class="login100-form-title p-b-26">
 						Selamat Datang
+						<?php echo get_cookie('billyboxbangil') ?>
 					</span>
 					<span class="login100-form-title p-b-48">
 						<img height="1%" width="20%" src="<?php echo base_url()?>assets/images/lock.png">

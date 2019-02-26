@@ -16,10 +16,10 @@ class Login extends CI_Controller {
     public function index()
     {
 		$cookie = get_cookie('billyboxbangil');
-		if ($this->session->userdata('username')){
+		if($this->session->userdata('username')){
 			redirect('home');
-		}else if($cookie <> '') {
-			// cek cookie
+		}
+		 if($cookie <> '') {
 			$body = [
 				[
 					'name' => 'cookie',
@@ -28,7 +28,7 @@ class Login extends CI_Controller {
 	
 			];
             $cek = json_decode($this->guzzle_post($this->data['api'],'login/cookieget',$body));
-            if ($cek->result==TRUE) {
+            if ($cek->status == TRUE) {
                 $getUser = array(
 					'id_user' => $cek->id_user,
 					'username' => $cek->username,
@@ -38,7 +38,7 @@ class Login extends CI_Controller {
 					'role' => $cek->role,
 				);
 				$this->session->set_userdata($getUser);
-				$this->load->view('home');
+				redirect('home');
             } else {
                 $this->session->set_flashdata("failed","<div class=\"alert alert-danger alert-dismissible\">
 				<a  class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>
@@ -92,8 +92,7 @@ class Login extends CI_Controller {
 		
 				];
 				json_decode($this->guzzle_post($this->data['api'],'login/cookieupdate',$updatecookie));
-				set_cookie('billboxbangil', $key, 3600*24*30);
-				
+				set_cookie('billyboxbangil', $key, 3600*24*30);
 			}
 			$getUser = array(
 							'id_user' => $cek->id_user,
