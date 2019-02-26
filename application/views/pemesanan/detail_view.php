@@ -28,7 +28,7 @@
                   <div role="tabpanel" class="tab-pane fade active in" id="pesanan-content" aria-labelledby="pesanan-tab">
                     <div class="row">
                       <div class="col-md-6 col-xs-6 pull-right">
-                        <h4><p class="text-right"><b><?php echo date('Y-m-d'); ?></b></p></h4>
+                        <h4><p class="text-right"><b><?php echo date('d-m-Y'); ?></b></p></h4>
                       </div>
                     </div>
                     <div class="row">
@@ -58,19 +58,19 @@
                             <td><?php echo $i+1; ?></td>
                             <td><?php echo $order['detail_order'][$i]['nama_barang'] ?></td>
                             <td><?php echo $order['detail_order'][$i]['jumlah'] ?></td>
-                            <td><?php echo $order['detail_order'][$i]['harga_satuan']; ?></td>
-                            <td><?php echo $order['detail_order'][$i]['harga'] ?></td>
+                            <td><?php echo 'Rp '.number_format($order['detail_order'][$i]['harga_satuan']); ?></td>
+                            <td><?php echo 'Rp '.number_format($order['detail_order'][$i]['harga']) ?></td>
                           </tr>
                           <?php } ?>
                           <tr>
                             <td colspan="3"></td>
                             <td class="text-right"><b>Total</b></td>
-                            <td><?php echo $pembayaran['harga_pesan'] ?></td>
+                            <td><?php echo 'Rp '.number_format($pembayaran['harga_pesan']) ?></td>
                           </tr>
                           <tr>
                             <td colspan="3"></td>
                             <td class="text-right"><b>Uang Muka Minimal</b></td>
-                            <td><?php echo ($pembayaran['harga_pesan'] * $pembayaran['dp']); ?></td>
+                            <td><?php echo 'Rp '.number_format(($pembayaran['harga_pesan'] * $pembayaran['dp'])); ?></td>
                           </tr>
                         </tbody>
                       </table>
@@ -111,7 +111,7 @@
                       </div>
                       <div class="col-md-6 col-xs-12">
                         <p><h4>Status Pembayaran : <b><?php echo $pembayaran['status_pembayaran'] ?></b></h4></p>
-                        <p><h4>Total Sudah Dibayar : <b>Rp.<?php echo $pembayaran['sudah_dibayar'] ?></b></h4></p>
+                        <p><h4>Total Sudah Dibayar : <b><?php echo 'Rp '.number_format($pembayaran['sudah_dibayar']) ?></b></h4></p>
                         <button type="button" class="btn btn-sm btn-success input-pembayaran"><span class="fa fa-dollar">&nbsp</span>Input Pembayaran </button>
                       </div>
                     </div>
@@ -168,7 +168,7 @@
                   <div role="tabpanel" class="tab-pane fade" id="pembayaran-content" aria-labelledby="pembayaran-tab">
                   <div class="row">
                       <div class="col-md-6 col-xs-6 pull-right">
-                        <h4><p class="text-right"><b><?php echo date('Y-m-d'); ?></b></p></h4>
+                        <h4><p class="text-right"><b><?php echo date('d-m-Y'); ?></b></p></h4>
                       </div>
                     </div>
                     <div class="row">
@@ -178,7 +178,7 @@
                         <p></p>
                       </div>
                       <div class="col-md-6 col-xs-12 text-right">
-                        <p>Nota No : <b><u>19283104</u></b></p>
+                        <p>Nota No : <b><u><?php echo $order['id_order'] ?></u></b></p>
                       </div>
                     </div>
                     <div class="row">
@@ -198,8 +198,8 @@
                             <td><?php echo $j+1; ?></td>
                             <td><?php echo $pembayaran['nota'][$j]['nama_barang'] ?></td>
                             <td><?php echo $pembayaran['nota'][$j]['dikirim'] ?></td>
-                            <td><?php echo $pelanggan['harga_jual'][$j]['harga_jual'] ?></td>
-                            <td><?php echo ($pelanggan['harga_jual'][$j]['harga_jual'] * $pembayaran['nota'][$j]['dikirim']) ?></td>
+                            <td><?php echo 'Rp '.number_format($pelanggan['harga_jual'][$j]['harga_jual'] )?></td>
+                            <td><?php echo 'Rp '.number_format(($pelanggan['harga_jual'][$j]['harga_jual'] * $pembayaran['nota'][$j]['dikirim'])) ?></td>
                           </tr>
                           <?php } ?>
                           <tr>
@@ -209,19 +209,19 @@
                               <?php if($pembayaran['harga_dikirim'] == null){
                                 echo '0';
                               } else {
-                                echo $pembayaran['harga_dikirim'];
+                                echo 'Rp '.number_format($pembayaran['harga_dikirim']);
                               } ?>
                             </td>
                           </tr>
                           <tr>
                             <td colspan="3"></td>
                             <td class="text-right"><b>Sudah Dibayar</b></td>
-                            <td><?php echo $pembayaran['sudah_dibayar'] ?></td>
+                            <td><?php echo 'Rp '.number_format($pembayaran['sudah_dibayar']) ?></td>
                           </tr>
                           <tr>
                             <td colspan="3"></td>
                             <td class="text-right"><b>Sisa Pembayaran</b></td>
-                            <td><?php echo $pembayaran['sisa_pembayaran'] ?></td>
+                            <td><?php echo 'Rp '.number_format($pembayaran['sisa_pembayaran']) ?></td>
                           </tr>
                         </tbody>
                       </table>
@@ -250,8 +250,8 @@
                                 <?php $no=1; foreach($pembayaran['detail_pembayaran'] as $det){?>
                                 <tr>
                                   <td><?php echo $no++ ?></td>
-                                  <td><?php echo $det['dibayar'] ?></td>
-                                  <td><?php echo $det['tanggal'] ?></td>
+                                  <td><?php echo 'Rp '.number_format($det['dibayar']) ?></td>
+                                  <td><?php echo date('d-m-Y',strtotime($det['tanggal'])) ?></td>
                                 </tr>
                                 <?php } ?>
                               </tbody>
