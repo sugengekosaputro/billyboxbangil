@@ -106,7 +106,7 @@
                               </label>
                             </div>
                           </p>
-                          <button type="submit" class="btn btn-sm btn-success"><span class="fa fa-refresh">&nbsp</span>Ubah Status </button>
+                          <button type="button" class="btn btn-sm btn-success ubah-status"><span class="fa fa-refresh">&nbsp</span>Ubah Status </button>
                         </form>
                       </div>
                       <div class="col-md-6 col-xs-12">
@@ -326,6 +326,26 @@ $(function(){
   var id_order = "<?php echo $this->uri->segment(3) ?>";
   tampilkanStatusOrder(id_order);
 
+  $('.ubah-status').on('click', function () {
+    const sts = $("input[name='status_order']:checked").val();
+    $.ajax({
+        type: "post",
+        url: "<?php echo site_url('pemesanan/update_status_order/'.$this->uri->segment(3) )?>",
+        data: {
+          status_order : sts,
+        },
+        dataType: "json",
+        success: function (res) {
+          if(res.status){
+            location.reload();
+          }
+        },
+        error: function (err) { 
+          console.log(err);
+        }
+      });
+  });
+
   $('.input-pembayaran').on('click', function () {
     $('#modal-pembayaran').modal('show');
     $('#simpan-pembayaran').on('click', function () {
@@ -346,7 +366,7 @@ $(function(){
             alert(res.message);
             location.reload();
           }
-//          console.log(res);
+ //         console.log(res);
         },
         error: function (err) { 
           console.log(err);
