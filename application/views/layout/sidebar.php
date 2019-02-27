@@ -9,7 +9,7 @@
       <li class="<?php if(isset($libarang)){echo $libarang;} ?>"><a><i class="fa fa-edit"></i> Barang <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu" style="<?php if(isset($ulbarang)){echo $ulbarang;} ?>">
           <li class="<?php if(isset($lidaftarbarang)){echo $lidaftarbarang;} ?>"><a href="<?php echo base_URL('barang'); ?>">Daftar Barang</a></li>
-          <li><a href="<?php echo base_URL('barang/stok_barang'); ?>">Stok Gudang</a></li>
+          <li><a href="<?php echo base_url('stok'); ?>">Stok Gudang</a></li>
         </ul>
       </li>
       <li class="<?php if(isset($lipemesanan)){echo $lipemesanan;} ?>"><a><i class="fa fa-desktop"></i> Pemesanan <span class="fa fa-chevron-down"></span></a>

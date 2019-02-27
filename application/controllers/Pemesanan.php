@@ -80,7 +80,7 @@ class Pemesanan extends CI_Controller {
 
 		$response = json_decode($this->guzzle_put($this->data['api'],'pemesanan/statusorder/'.$id_order,$body),true);
 		if($response['status']){
-			redirect($_SERVER['REQUEST_URI'],'refresh');
+			echo json_encode($response);
 		}
 	}
 
