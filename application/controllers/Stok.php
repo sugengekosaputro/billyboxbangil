@@ -5,9 +5,8 @@ class Stok extends CI_Controller {
   
   public $data = array(
 		'content' => 'stok/stok_view',
-		'libarang' => 'active',
 		'ulbarang' => 'display:block',
-		'lidaftarbarang' => 'active',
+		'listok' => 'active',
 		'api' => 'http://localhost/billyboxbangilapi/'
   );
   

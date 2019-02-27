@@ -5,6 +5,7 @@ class Home extends CI_Controller {
 
 	public $data = array(
 		'content' => 'home/home_view',
+		'lihome' => 'active',
 		'api' => 'http://localhost/billyboxbangilapi/'
 	);
 

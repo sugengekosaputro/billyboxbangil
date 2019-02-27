@@ -58,8 +58,8 @@
                   <div class="count"><?php echo $data['pembayaran']['belum_bayar'] ?></div>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                  <span class="count_top"><i class="fa fa-clock-o"></i> Belum Lunas</span>
-                  <div class="count"><?php echo $data['pembayaran']['belum_lunas'] ?></div>
+                  <span class="count_top"><i class="fa fa-clock-o"></i> Proses Bayar</span>
+                  <div class="count"><?php echo $data['pembayaran']['proses_bayar'] ?></div>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                   <span class="count_top"><i class="fa fa-user"></i> Lunas</span>

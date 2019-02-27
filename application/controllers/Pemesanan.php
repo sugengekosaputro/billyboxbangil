@@ -6,7 +6,6 @@ class Pemesanan extends CI_Controller {
 	public $data = array(
 		'content' => 'pemesanan/pemesanan_view',
 		'lipemesanan' => 'active',
-		'ulpemesanan' => 'display:block',
 		'lidaftarpesanan' => 'active',
 		'api' => 'http://localhost/billyboxbangilapi/'
 	);
