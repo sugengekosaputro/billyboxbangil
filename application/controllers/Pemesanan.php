@@ -32,6 +32,7 @@ class Pemesanan extends CI_Controller {
 		$this->data['order'] = $data['order'];
 		$this->data['pembayaran'] = $data['pembayaran'];
 		$this->data['surat_jalan'] = $data['surat_jalan'];
+		$this->data['tempo'] = $this->hitungSelisihHari($data['pembayaran']['jatuh_tempo']);
 
 		$this->data['content'] = 'pemesanan/detail_view';
 		$this->load->view('layout/main', $this->data);
@@ -261,4 +262,14 @@ class Pemesanan extends CI_Controller {
 		// 	show_error($this->email->print_debugger());
 		// }
 	}
-}
+
+	public function hitungSelisihHari($tgl)
+	{
+		$tempo       = new DateTime($tgl);
+		$now = new DateTime(); // tanggal sekarang berdasarkan tanggal di komputer
+		$result        = $now->diff($tempo)->format("%a");
+
+
+		return $result;
+	}
+}		

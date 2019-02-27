@@ -52,9 +52,19 @@ class Tagihan extends CI_Controller {
 		$body = ['id_pembayaran' => $id, 'dibayar' => $dibayar, 'id_order' => $id_order];
 		
 		$response = json_decode($this->guzzle_post($this->data['api'],'penagihan/pembayaran',$body),true);
-		// if($response['status']){
-        echo json_encode($response);
-    // }
+      echo json_encode($response);
+	}
+
+	public function setlunas()
+	{
+		$id = $this->input->post('id_pembayaran');
+		$sisa = $this->input->post('sisa');
+		$id_order = $this->input->post('id_order');
+
+		$body = ['id_pembayaran' => $id, 'dibayar' => $sisa, 'id_order' => $id_order];
+		
+		$response = json_decode($this->guzzle_post($this->data['api'],'penagihan/pembayaranlunas',$body),true);
+      echo json_encode($response);
 	}
 
 	public function notifEmailPemesanan($id_order)

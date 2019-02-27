@@ -78,6 +78,13 @@
 
                     <div class="row">
                       <div class="col-md-6 col-xs-12">
+                        <p><h4>Jatuh Tempo : <?php echo date('d-M-Y',strtotime($pembayaran['jatuh_tempo'])) ?>
+                        <b>( <?php echo $tempo ?> Hari Lagi)</b></h4></p>
+                      </div>      
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6 col-xs-12">
                         <p><h4>Status Order : <b><?php echo $order['status_order'] ?></b></h4></p>
                         <form class="form-horizontal form-label-left input_mask" action="<?php echo site_url('pemesanan/update_status_order/'.$this->uri->segment(3) )?>" method="POST"> 
                           <p>
@@ -113,6 +120,7 @@
                         <p><h4>Status Pembayaran : <b><?php echo $pembayaran['status_pembayaran'] ?></b></h4></p>
                         <p><h4>Total Sudah Dibayar : <b><?php echo 'Rp '.number_format($pembayaran['sudah_dibayar']) ?></b></h4></p>
                         <button type="button" class="btn btn-sm btn-success input-pembayaran"><span class="fa fa-dollar">&nbsp</span>Input Pembayaran </button>
+                        <button type="button" class="btn btn-sm btn-primary set-lunas">Set Lunas </button>
                       </div>
                     </div>
                   </div>
@@ -221,15 +229,23 @@
                           <tr>
                             <td colspan="3"></td>
                             <td class="text-right"><b>Sisa Pembayaran</b></td>
-                            <td><?php echo 'Rp '.number_format($pembayaran['sisa_pembayaran']) ?></td>
+                            <td id="sisa_bayar"><?php echo 'Rp '.number_format($pembayaran['sisa_pembayaran']) ?></td>
                           </tr>
                         </tbody>
                       </table>
                     </div>
                     
+                    <div class="row">
+                      <div class="col-md-6 col-xs-12">
+                        <p><h4>Jatuh Tempo : <?php echo date('d-M-Y',strtotime($pembayaran['jatuh_tempo'])) ?>
+                        <b>( <?php echo $tempo ?> Hari Lagi)</b></h4></p>
+                      </div>
+                    </div>
+
                     <div class="ln_solid"></div>
                     <button type="button" class="btn btn-sm btn-warning tampil-notif"><span class="fa fa-bell">&nbsp</span>Kirim Notifikasi Email </button>
                     <button type="button" class="btn btn-sm btn-success input-pembayaran"><span class="fa fa-dollar">&nbsp</span>Input Pembayaran </button>
+                    <button type="button" class="btn btn-sm btn-primary set-lunas">Set Lunas </button>
 
                     <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
                       <div class="panel">
@@ -320,6 +336,27 @@
   </div>
 </div>
 
+<div class="modal fade" id="modal-setlunas" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Konfirmasi</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <div class="modal-body">
+        <p id="preview-sisa"></p>
+        <p>Lunasi Pembayaran Sekarang ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-default" id="close-notif">Close</button>
+        <input type="button" class="btn btn-sm btn-success" id="btn-lunas" value="Set Lunas"/>     
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -344,6 +381,38 @@ $(function(){
           console.log(err);
         }
       });
+  });
+
+  $('.set-lunas').on('click', function () {
+    const id = $('#id_pembayaran').val();
+    const sisa = "<?php echo $pembayaran['sisa_pembayaran'] ?>";
+
+    if(sisa == 0){
+      alert('Pelanggan sudah melunasi pembayaran');
+    }else{
+    $('#modal-setlunas').modal('show');
+    $('#preview-sisa').html('Sisa Pembayaran Rp.'+format(sisa)) ;
+    
+    $.ajax({
+        type: "post",
+        url: "<?php echo site_url('tagihan/setlunas')?>",
+        data: {
+          id_pembayaran : id,
+          sisa : sisa,
+          id_order : id_order,
+        },
+        dataType: "json",
+        success: function (res) {
+          if(res.status){
+            $('#modal-setlunas').modal('hide');
+            location.reload();
+          }
+        },
+        error: function (err) { 
+          console.log(err);
+        }
+      }); 
+    }
   });
 
   $('.input-pembayaran').on('click', function () {
@@ -417,5 +486,13 @@ $(function(){
       }
     });
   };
+
+  function format(bilangan) { 
+    var	reverse = bilangan.toString().split('').reverse().join(''),
+    ribuan 	= reverse.match(/\d{1,3}/g);
+    ribuan	= ribuan.join('.').split('').reverse().join('');
+
+    return ribuan;
+  }
 })
 </script>
