@@ -27,6 +27,10 @@
                     <input type="text" name="nama_pelanggan" class="form-control has-feedback-left" id="namaPelanggan" placeholder="Nama Pelanggan">
                     <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                   </div>
+
+                  <div class="col-md-5 col-sm-5 col-xs-12 link-barang">
+                    <a id="link" style="text-decoration:underline; color:blue;" href="#">Lihat Barang Milik <span id="milik"></span></a>
+                  </div>
                 </div>
 
                 <div class="form-group">
@@ -145,6 +149,9 @@ $(function(){
     onSelect: function (suggestion) {
       var id = $('#id_pelanggan').val(suggestion.id);
       $("#namaBarang").prop("disabled",false).focus();
+      $('.link-barang').show();
+      $('#link').prop('href','http://localhost/billyboxbangil/pelanggan/harga/'+id.val());
+      $('#milik').text($(this).val());
     }
   });
 
@@ -158,6 +165,12 @@ $(function(){
       $("#jumlahBarang").prop("disabled",false).focus();
     }
   });
+
+  if(namapelanggan.val().length > 0){
+    $('.link-barang').show();
+  }else{
+    $('.link-barang').hide();
+  }
 
   $('#jumlahBarang').on("input",function () { 
     let val = $(this).val();

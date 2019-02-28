@@ -44,7 +44,7 @@
                           <p><?php echo $barang['nama_barang']; ?></p>
                           <div class="tools tools-bottom">
                             <a href="<?php echo site_url('barang/edit/'.$barang['id_barang']) ?>"><i class="fa fa-pencil"></i></a>
-                            <a href="<?php echo site_url() ?>" onClick="javascript:return confirm(`Anda Yakin Ingin Hapus Data ?`)"><i class="fa fa-trash"></i></a>
+                            <a href="<?php echo site_url('barang/hapus/'.$barang['id_barang']) ?>" onClick="javascript:return confirm(`Anda Yakin Ingin Hapus Data ?`)"><i class="fa fa-trash"></i></a>
                           </div>
                         </div>
                       </div>

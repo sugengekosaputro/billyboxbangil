@@ -125,10 +125,10 @@ class Barang extends CI_Controller {
 			];
 
 			$response = json_decode($this->guzzle_put($this->data['api'],'barang/update',$body),true);
-			// if($response->status){
-			// 	redirect('barang','refresh');
-			// }
-			var_dump($response);
+			if($response['status']){
+				redirect('barang','refresh');
+			}
+			//var_dump($response);
 		}else{
 			$body = [
 				[
@@ -165,11 +165,11 @@ class Barang extends CI_Controller {
 				],
 			];
 			
-			$response = json_decode($this->guzzle_put($this->data['api'],'barang/update',$body));
-			var_dump($response);
-			// if($response->status){
-			// 	redirect('barang','refresh');
-			// }
+			$response = json_decode($this->guzzle_put($this->data['api'],'barang/update',$body),true);
+			//var_dump($response);
+			if($response['status']){
+				redirect('barang','refresh');
+			}
 		}
 	}
 
@@ -178,11 +178,10 @@ class Barang extends CI_Controller {
 		$body = [
 			'id_barang' => $id,
 		];
-		$response = json_decode($this->guzzle_delete($this->data['api'],'barang',$body));
-		//  if($response->status){
-		// 	redirect('barang','refresh');
-		// }
-		var_dump($response);
+		$response = json_decode($this->guzzle_delete($this->data['api'],'barang/'.$id),true);
+		 if($response['status']){
+			redirect('barang','refresh');
+		}
 	}
 
 	public function cari()
@@ -251,14 +250,12 @@ class Barang extends CI_Controller {
 		}
 	}
 
-	public function guzzle_delete($url,$uri,$body)
+	public function guzzle_delete($url,$uri)
 	{
 		try{
 			$client = new GuzzleHttp\Client(['base_uri' => $url]);
-			$response = $client->request('DELETE',$uri,[
-				'form_params' => $body,
-			]);
-			return $response->getBody()->getContents();;
+			$response = $client->request('DELETE',$uri);
+			return $response->getBody()->getContents();
 		}catch(GuzzleHttp\Exception\ClientException $e){
 			return $e->getResponse()->getBody()->getContents();
 		}

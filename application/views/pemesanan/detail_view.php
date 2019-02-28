@@ -393,7 +393,8 @@ $(function(){
     $('#modal-setlunas').modal('show');
     $('#preview-sisa').html('Sisa Pembayaran Rp.'+format(sisa)) ;
     
-    $.ajax({
+    $('#btn-lunas').on('click',function () {
+      $.ajax({
         type: "post",
         url: "<?php echo site_url('tagihan/setlunas')?>",
         data: {
@@ -411,7 +412,8 @@ $(function(){
         error: function (err) { 
           console.log(err);
         }
-      }); 
+      });
+    }); 
     }
   });
 
@@ -457,7 +459,9 @@ $(function(){
         url: "http://localhost/billyboxbangil/pemesanan/notifEmailPemesanan/2",
         dataType: "json",
         success: function (response) {
+          console.log(response);
         }
+
       });
       $('#modal-notif').modal('hide');
 //console.log('kirim');
