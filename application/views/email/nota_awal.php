@@ -11,7 +11,7 @@
 <body>
 <table border="0"  style="width:100%;">
   <tr valign="top" align="left">
-    <th style="width:10%"><img width="220px" height="70px" src="<?php echo base_url('assets/images/udbbbicon.png'); ?>" alt="UDBBB"></th>
+    <th style="width:10%"><img width="220px" height="70px" src="<?php echo base_url('assets/images/logobillynew.png'); ?>" alt="UDBBB"></th>
     <th style="width:40%;padding-top:5%;padding-bottom:1%;" align="center"><a style="font-size:20px"><u>Nota Pemesanan</th>
     <th style="width:50%">Pasuruan &emsp; <?php echo date('d-m-Y');?></th>
   </tr>

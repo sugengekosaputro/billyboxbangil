@@ -125,10 +125,10 @@ class Barang extends CI_Controller {
 			];
 
 			$response = json_decode($this->guzzle_put($this->data['api'],'barang/update',$body),true);
-			// if($response->status){
-			// 	redirect('barang','refresh');
-			// }
-			var_dump($response);
+			if($response->status){
+				redirect('barang','refresh');
+			}
+			// var_dump($response);
 		}else{
 			$body = [
 				[
@@ -166,10 +166,10 @@ class Barang extends CI_Controller {
 			];
 			
 			$response = json_decode($this->guzzle_put($this->data['api'],'barang/update',$body));
-			var_dump($response);
-			// if($response->status){
-			// 	redirect('barang','refresh');
-			// }
+			// var_dump($response);
+			if($response->status){
+				redirect('barang','refresh');
+			}
 		}
 	}
 
@@ -179,10 +179,10 @@ class Barang extends CI_Controller {
 			'id_barang' => $id,
 		];
 		$response = json_decode($this->guzzle_delete($this->data['api'],'barang',$body));
-		//  if($response->status){
-		// 	redirect('barang','refresh');
-		// }
-		var_dump($response);
+		 if($response->status){
+			redirect('barang','refresh');
+		}
+		// var_dump($response);
 	}
 
 	public function cari()

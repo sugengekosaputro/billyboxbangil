@@ -27,7 +27,9 @@
                     <input type="text" name="nama_pelanggan" class="form-control has-feedback-left" id="namaPelanggan" placeholder="Nama Pelanggan">
                     <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                   </div>
+                  <a href="#" style='color:blue'><u>Lihat barang pelanggan</u></a>
                 </div>
+                
 
                 <div class="form-group">
                   <div class="col-md-7 col-sm-7 col-xs-12 form-group has-feedback">

@@ -28,6 +28,10 @@
                   <span class="fa fa-money form-control-feedback left" aria-hidden="true"></span>
                 </div>
 
+                <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                  <input disabled style="background-color:white; border:0px" id="hargabeli" >
+                </div>
+
                 <div class="form-group">
                 </div>
                 
@@ -55,6 +59,7 @@ $(function(){
     serviceUrl : site,
     onSelect: function (suggestion) {
         $('#idbarang').val(''+suggestion.id);
+        $('#hargabeli').val('Harga beli = Rp. '+suggestion.harga_beli);
     }
   });
 });

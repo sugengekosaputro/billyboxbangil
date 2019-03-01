@@ -253,14 +253,16 @@ class Pemesanan extends CI_Controller {
 		// Isi email
 		$body = $this->load->view('email/email_view',$this->data);
 		$this->email->message($body,"inline");
-		$this->email->send();
+		// $this->email->send();
 
 		// Tampilkan pesan sukses atau error
-		// if ($this->email->send()) {
-		// 	echo 'ok';
-		// } else {
-		// 	show_error($this->email->print_debugger());
-		// }
+		if ($this->email->send()) {
+			
+			echo json_encode('ok');
+		} else {
+			$error = show_error($this->email->print_debugger());
+			echo json_encode($error);
+		}
 	}
 
 	public function hitungSelisihHari($tgl)
