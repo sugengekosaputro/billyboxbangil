@@ -5,6 +5,12 @@
     <div class="clearfix"></div>
       <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="barang">Pelanggan</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Harga pelanggan</li>
+          </ol>
+        </nav>
           <div class="x_panel">
             <div class="x_title">
               <h3><?php echo $data['nama_pelanggan'] ?></h3>

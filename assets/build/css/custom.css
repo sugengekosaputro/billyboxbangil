@@ -800,7 +800,7 @@ a:focus {
 /*disini*/
 .nav.side-menu>li.current-page,
 .nav.side-menu>li.active {
-    border-right: 5px solid #ad7908b6
+    border-right: 5px solid #ff5100
 }
 .nav li.current-page {
     background: rgba(255, 255, 255, 0.05)
@@ -1700,7 +1700,7 @@ span.right {
     cursor: pointer;
 }
 .sidebar-footer a:hover {
-    background: #f0c792
+    background: #ff7b00
 }
 .tile_count {
     margin-bottom: 20px;

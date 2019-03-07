@@ -5,9 +5,6 @@
     <div class="clearfix"></div>
       <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
-        <img height="20px" width="30px" src="<?php echo base_url('assets/images/home.png') ?>">
-        <a> __ </a>
-        <a href="#"><u>pemesanan</a>
           <div class="x_panel">
             <div class="x_title">
               

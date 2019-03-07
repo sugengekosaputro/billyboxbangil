@@ -5,6 +5,12 @@
     <div class="clearfix"></div>
       <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="<?php echo base_url('user');?>">Daftar user</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Tambah user</li>
+          </ol>
+        </nav>
           <div class="x_panel">
             <div class="x_title">
               <h2>Data Users<small>Billy Box Bangil</small></h2>

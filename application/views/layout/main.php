@@ -9,6 +9,7 @@
 	  
     <title>Billy Box Bangil </title>
 
+    <link rel="icon" type="image/png" href="<?php echo base_url() ?>assets/images/logobillynew.ico"/>
     <!-- Bootstrap -->
     <link href="<?php echo base_url() ?>assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- FastClick -->

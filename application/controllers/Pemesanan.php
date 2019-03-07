@@ -27,6 +27,9 @@ class Pemesanan extends CI_Controller {
 	public function detail()
 	{
 		$id_order = $this->uri->segment(3);
+		if($id_order=='pemesanan'){
+			redirect('pemesanan');
+		}
 		$data = json_decode($this->guzzle_get($this->data['api'],'pemesanan/'.$id_order),true);
 		$this->data['pelanggan'] = $data['pelanggan'];
 		$this->data['order'] = $data['order'];
