@@ -26,7 +26,7 @@
                 <thead>
                   <tr>
                     <th>Nama Barang</th>
-                    <th>Laba</th>
+                    <th>Harga Pelanggan</th>
                     <th>Harga Jual</th>
                     <th>Aksi</th>
                   </tr>

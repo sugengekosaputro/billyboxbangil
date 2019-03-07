@@ -57,7 +57,7 @@
             <div class="navbar nav_title" style="border: 0;">
               <a href="<?php echo base_url('home') ?>" class="site_title">
               <img height="40px" width="50px" src="<?php echo base_url('assets/images/logobillynew.png') ?>"/> 
-              <span style="color:white">Billy Box Bangil</span>
+              <span style="color:white">UD.BBB</span>
             </a>
             </div>
 
@@ -89,17 +89,17 @@
 
         <!-- top navigation -->
         <div class="top_nav navbar-fixed-top">
-          <div class="nav_menu" style="background-color : #f9a825">
+          <div class="nav_menu" style="background-color : #fac655">
             <nav>
               <div class="nav toggle">
-                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                <a id="menu_toggle"><i style="color:#006329" class="fa fa-bars"></i></a>
               </div>
 
-              <ul class="nav navbar-nav navbar-right" style="background-color : #f9a825">
+              <ul class="nav navbar-nav navbar-right" style="background-color : #fac655">
                 <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" style="background-color : #f9a825" data-toggle="dropdown" aria-expanded="false">
+                  <a href="javascript:;" class="user-profile dropdown-toggle" style="color:#ffffff; background-color : #fac655" data-toggle="dropdown" aria-expanded="false">
                     <img src="<?php echo $this->session->userdata('foto') ?>" alt=""><?php echo $this->session->userdata('username') ?>
-                    <span class=" fa fa-angle-down"></span>
+                    <span style="color:black" class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="javascript:;"> Profile</a></li>

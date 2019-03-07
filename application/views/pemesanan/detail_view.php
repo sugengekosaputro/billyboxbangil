@@ -239,6 +239,7 @@
                       <div class="col-md-6 col-xs-12">
                         <p><h4>Jatuh Tempo : <?php echo date('d-M-Y',strtotime($pembayaran['jatuh_tempo'])) ?>
                         <b>( <?php echo $tempo ?> Hari Lagi)</b></h4></p>
+                        <p><h4><b><a style="<?php if($order['status_order']=='Selesai'){echo 'color:#0d47a1';}else{echo 'color:red';} ?>">Status Order : <?php echo $order['status_order'] ?></a></b></h4></p>
                       </div>
                     </div>
 
@@ -393,7 +394,8 @@ $(function(){
     $('#modal-setlunas').modal('show');
     $('#preview-sisa').html('Sisa Pembayaran Rp.'+format(sisa)) ;
     
-    $.ajax({
+    $('#btn-lunas').on('click',function () {
+      $.ajax({
         type: "post",
         url: "<?php echo site_url('tagihan/setlunas')?>",
         data: {
@@ -411,7 +413,8 @@ $(function(){
         error: function (err) { 
           console.log(err);
         }
-      }); 
+      });
+    }); 
     }
   });
 
@@ -457,7 +460,9 @@ $(function(){
         url: "http://localhost/billyboxbangil/pemesanan/notifEmailPemesanan/2",
         dataType: "json",
         success: function (response) {
+          console.log(response);
         }
+
       });
       $('#modal-notif').modal('hide');
 //console.log('kirim');

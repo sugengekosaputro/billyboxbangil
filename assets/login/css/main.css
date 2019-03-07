@@ -174,7 +174,7 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  background: #ffbb33;  
+  background-image:url('http://localhost/billyboxbangil/assets/images/bg-login.jpg') ;  
 }
 
 .wrap-login100 {

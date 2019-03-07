@@ -32,7 +32,7 @@
                     <span class="fa fa-eye-slash form-control-feedback left" aria-hidden="true"></span>
                   </div>
                   <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                    <input type="file" name="foto" class="form-control has-feedback-left" id="foto" placeholder="Email">
+                    <input type="file" name="foto_user" class="form-control has-feedback-left" id="foto" placeholder="Email">
                     <span class="fa fa-image form-control-feedback left" aria-hidden="true"></span>
                   </div>
                   <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">

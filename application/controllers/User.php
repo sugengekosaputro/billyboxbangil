@@ -40,7 +40,7 @@ class User extends CI_Controller {
 
 	public function simpan()
 	{
-		if(empty($_FILES['foto']['name'])){
+		if(empty($_FILES['foto_user']['name'])){
 			echo 'harus upload bro';
 		}else{
 			$body = [
@@ -50,16 +50,16 @@ class User extends CI_Controller {
 				],
 				[
 					'name' => 'password',
-					'contents' => $this->input->post('password'),
+					'contents' => md5($this->input->post('password')),
 				],
 				[
 					'name' => 'email',
 					'contents' => $this->input->post('email'),
 				],
 				[
-					'name' => 'foto',
-					'contents' => fopen($_FILES['foto']['tmp_name'], 'r'),
-					'filename' => $_FILES['foto']['name'],
+					'name' => 'foto_user',
+					'contents' => fopen($_FILES['foto_user']['tmp_name'], 'r'),
+					'filename' => $_FILES['foto_user']['name'],
 					'headers' => [
 						'content-type' => 'image/jpeg'
 					]
@@ -152,8 +152,8 @@ class User extends CI_Controller {
 		$body = [
 			'id_user' => $id_user,
 		];
-		$response = json_decode($this->guzzle_delete($this->data['api'],'user',$body));
-		if($response->status){
+		$response = json_decode($this->guzzle_delete($this->data['api'],'user/'.$id_user),true);
+		if($response['status']){
 			redirect('user','refresh');
 		}
 	}
@@ -189,12 +189,14 @@ class User extends CI_Controller {
 		}
 	}
 
-	public function guzzle_delete($url,$uri,$body)
+	public function guzzle_delete($url,$uri)
 	{
-		$client = new GuzzleHttp\Client(['base_uri' => $url]);
-		$response = $client->request('DELETE',$uri,[
-			'form_params' => $body,
-		]);
-		return $response->getBody();
+		try{
+			$client = new GuzzleHttp\Client(['base_uri' => $url]);
+			$response = $client->request('DELETE',$uri);
+			return $response->getBody()->getContents();
+		}catch(GuzzleHttp\Exception\ClientException $e){
+			return $e->getResponse()->getBody()->getContents();
+		}
 	}
 }
